@@ -13,6 +13,7 @@ from PIL import Image
 from skimage.filters import gaussian
 
 import facer
+from model import BiSeNet
 
 
 def get_rgb_codes(path):

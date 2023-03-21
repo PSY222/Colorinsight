@@ -28,7 +28,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.post("/image")
 async def image(data: dict):
 
@@ -58,3 +57,45 @@ async def image(data: dict):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail="fail")
+
+
+@app.post("/lip")
+async def lip(data: dict):
+    try:
+        image_data = data["image"]
+        decoded_image = base64.b64decode(image_data.split(",")[1])
+       
+        with open("saved.jpg","wb") as fi:
+            fi.write(decoded_image)
+        
+        path = r"saved.jpg"
+       
+        rgb_codes = f.get_rgb_codes(path)  #check point
+        print("random_rgb_codes 앞에")
+        random_rgb_codes = f.filter_lip_random(rgb_codes,40) #랜덤 추출 값 40으로 지정
+
+        os.remove("saved.jpg")
+     
+        types = Counter(f.calc_dis(random_rgb_codes))
+    
+        max_value_key = max(types, key=types.get)
+        print(max_value_key)
+        if max_value_key == 'sp':
+            result = 1
+        elif max_value_key == 'su':
+            result = 2
+        elif max_value_key == 'au':
+            result = 3
+        elif max_value_key == 'win':
+            result = 4
+        
+        data = {'image':image_data,'result':result}
+        encoded_data = base64.b64encode(str(data).encode('utf-8')).decode('utf-8')        
+        response = requests.post("http://localhost:3000/output2", json={'encodedData':encoded_data})
+        
+        print(response)
+        
+        return JSONResponse(content={"message":"complete"})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="fail")
+
