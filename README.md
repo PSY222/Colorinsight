@@ -20,7 +20,7 @@ The backbone of this personal color detection model is based on a face parsing m
   year={2021}
 }<br>
 
-### C. Personal Color based on Face Skin diagnosis model
+### C. Personal Color diagnosis model
 After obtaining face skin mask image, we tried three approaches to find the most suitable model that matches an exact personal color type. (Personal color type is divided into four categories: spring, summer, autumnm, winter) First approach was to categorize personal color type with L2 norm distance between particular rgb code data point from the research paper and randomly extracted rgb codes from skin mask area. For the second approach, we made additional structured dataset with r,g,b columns extracted from face skin mask. The, we applied machine learning classification model to predict the proper personal color type label. However, these two methods resulted low accuracy rate ranging from 20% to 30 % with the limitation that it fails to predict 'autumn' type. <br>
 
 As a last attempt , we organized another image dataset that extracted face skin mask image from previously collected Korean celebrity face dataset. Then we tested popular image classification models including MobileNet, ResNet and EfficientNet. ResNet with Adam optimizer demonstrated the best performance among all, that we eventually used this model for the prediction. 
