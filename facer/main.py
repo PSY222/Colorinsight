@@ -71,8 +71,8 @@ async def lip(data: dict):
         path = r"saved.jpg"
        
         rgb_codes = f.get_rgb_codes(path)  #check point
-        print("random_rgb_codes 앞에")
-        random_rgb_codes = f.filter_lip_random(rgb_codes,40) #랜덤 추출 값 40으로 지정
+     
+        random_rgb_codes = f.filter_lip_random(rgb_codes,40) #set number of randomly picked sample as 40
 
         os.remove("saved.jpg")
      
