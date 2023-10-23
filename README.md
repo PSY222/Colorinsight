@@ -10,7 +10,7 @@ Our team built the website called 'Colorinsight' because of two big motivations:
 We implemeted two separated models for the personal color diagnosis. After the careful comparison of performance between several models, we selected FaRL model which showed outstanding performance compared to other face segmentation models even in complicated situation(face in different direction, extreme face shape...etc.). After sementing pure skin part of face, we trained another image classification model with Korean celebrity images. The dataset was collected by Google image crawling using python selenium. To overcome the limited image data(750 images), data augmentation was employed. (dataset is not uploaded on a repository for a privacy protection)
 
 
-### A. Deel Learning Model Backbone (FaRL model)
+### A. Deep Learning Model Backbone (FaRL model)
 The backbone of this personal color detection model is based on a face parsing model from FaRL(Facial Representation Learning) from the great authors below.
 
 @article{zheng2021farl,
